@@ -7,8 +7,8 @@ export const posts = [
         headline: "Some headline - 1",
         content: "Some long content\nwith\nbreaklines - 1",
         status: "Published", //TODO: Enum
-        category: NaN, // TODO: Enum?
-        tags: NaN // TODO: Enum?
+        category: "MacOS", // TODO: Enum?
+        tags: ["keyboard", "productivity"] // TODO: Enum?
     },
     {
         id: "post-2",
@@ -18,7 +18,7 @@ export const posts = [
         headline: "Some headline - 2",
         content: "Some long content\nwith\nbreaklines - 2",
         status: "Draft", //TODO: Enum
-        category: NaN, // TODO: Enum?
-        tags: NaN // TODO: Enum?
+        category: "Swift", // TODO: Enum?
+        tags: ["CC", "techniques"] // TODO: Enum?
     }
 ]

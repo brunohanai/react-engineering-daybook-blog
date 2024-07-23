@@ -1,4 +1,5 @@
 import { posts } from "../lib/placeholder-data";
+import { Link } from "react-router-dom";
 
 function Home() {
     return (
@@ -7,7 +8,8 @@ function Home() {
             <ul>
                 {posts.map(post => (
                     <li key={post.id}>
-                        {post.title}
+                        {/* TODO: created_at formatado e title como slug */}
+                        <Link to={`/${post.created_at}/${post.category.toLowerCase()}/${post.title.toLowerCase()}/`}>{post.title}</Link>
                     </li>
                 ))}
             </ul>
