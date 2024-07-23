@@ -5,6 +5,10 @@ function Post() {
     const { createdAt, category, slug } = useParams();
     const post = posts.find(post => post.created_at === createdAt);
 
+    if (!post) {
+        return <p>Texto não encontrado</p>;
+    }
+
     return (
         <div className="Post">
             Post!
