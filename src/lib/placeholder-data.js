@@ -1,4 +1,4 @@
-const posts = [
+export const posts = [
     {
         id: "post-1",
         created_at: "2024-07-23T19:03:00Z",
