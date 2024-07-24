@@ -7,9 +7,15 @@ export const posts = [
         title: "Some title - 1",
         headline: "Some headline - 1",
         content: `
-        **Situação:** Os "Text Replacement" que configurei não estavam funcionando no [The Archive](https://zettelkasten.de/the-archive/) (um editor de textos para macOS que utilizo), mas funcionavam em outros aplicativos.
+### Situação
 
-        **Solução:** [(Fonte)](https://discussions.apple.com/thread/255359649?sortBy=rank) Abrir o The Archive, e habilitar a opção do menu: "Edit → Substitutions → Text Replacement".
+Os *"[Text Replacement](https://www.digitaltrends.com/computing/how-to-add-and-use-text-replacements-on-mac/)"* configurados no teclado do *macOS* não funcionam em um aplicativo específico ([The Archive](https://zettelkasten.de/the-archive/)), mas funcionam em outros aplicativos.
+
+### Solução
+
+Fonte: https://discussions.apple.com/thread/255359649?sortBy=rank
+
+Abrir o *The Archive*, e habilitar a opção do menu: *"Edit → Substitutions → Text Replacement"*.
         `,
         status: "Published", //TODO: Enum
         category: "MacOS", // TODO: Enum?
