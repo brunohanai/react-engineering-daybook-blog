@@ -130,11 +130,7 @@ function Header() {
                         </Typography>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <Button key="home" component="a" href="/" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
-                                Página Inicial
-                            </Button>
-
-                            <Button key="archive" component="a" href="/archive" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                            <Button key="archive" component="a" href="/" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
                                 Textos
                             </Button>
 
