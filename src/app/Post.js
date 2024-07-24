@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
+import Markdown from "react-markdown";
 import moment from "moment";
+import remarkGfm from 'remark-gfm'
 import { posts } from "../lib/placeholder-data";
 
 function Post() {
@@ -19,7 +21,7 @@ function Post() {
 
             <h1>{post.title}</h1>
 
-            <h2>{post.headline}</h2>
+            <strong>{post.headline}</strong>
 
             <p>Publshed at: {moment(post.created_at).format("MMMM Do YYYY, dddd, HH:mm")}</p>
             <p>Updated at: {post.updated_at ? moment(post.updated_at).format("MMMM Do YYYY, dddd, HH:mm") : "-"}</p>
@@ -28,9 +30,7 @@ function Post() {
             <p>Tags: {post.tags.join(", ")}</p>
 
             <div>
-                {post.content.split('\n').map((line, index) => (
-                    <p key={index}>{line}</p>
-                ))}
+                <Markdown remarkPlugins={[remarkGfm]}>{post.content}</Markdown>
             </div>
         </div>
     )
