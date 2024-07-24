@@ -17,8 +17,6 @@ function Post() {
 
     return (
         <div className="Post">
-            Post!
-
             <h1>{post.title}</h1>
 
             <strong>{post.headline}</strong>

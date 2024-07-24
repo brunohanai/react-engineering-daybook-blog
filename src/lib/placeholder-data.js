@@ -15,7 +15,7 @@ Os *"[Text Replacement](https://www.digitaltrends.com/computing/how-to-add-and-u
 
 Fonte: https://discussions.apple.com/thread/255359649?sortBy=rank
 
-Abrir o *The Archive*, e habilitar a opção do menu: *"Edit → Substitutions → Text Replacement"*.
+Abrir o *The Archive* e habilitar a opção do menu: *"Edit → Substitutions → Text Replacement"*.
         `,
         status: "Published", //TODO: Enum
         category: "MacOS", // TODO: Enum?
