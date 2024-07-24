@@ -2,6 +2,11 @@ import { useParams } from "react-router-dom";
 import Markdown from "react-markdown";
 import moment from "moment";
 import remarkGfm from 'remark-gfm'
+import Box from '@mui/material/Box';
+import Container from "@mui/material/Container";
+import Grid from '@mui/material/Unstable_Grid2';
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import { posts } from "../lib/placeholder-data";
 
 function Post() {
@@ -16,19 +21,30 @@ function Post() {
     }
 
     return (
-        <div className="Post">
-            <h1>{post.title}</h1>
+        <Container sx={{ p: 4 }}>
+            <div className="Post">
+                <Paper elevation={2} sx={{ p: 3 }}>
+                    <Box sx={{ width: '100%' }}>
+                        <Grid container rowSpacing={1} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
+                            <Grid xs={8} sx={{ textAlign: "left" }}>
+                                <Typography sx={{ fontWeight: "bold", fontSize: "22px" }}>{post.title}</Typography>
+                            </Grid>
+                            <Grid xs={4} sx={{ textAlign: "right" }}>
+                                <Typography sx={{ fontWeight: "bold" }}>{moment(post.created_at).format("MMMM Do YYYY")}</Typography>
+                            </Grid>
+                        </Grid>
+                    </Box>
 
-            <p>Publshed at: {moment(post.created_at).format("MMMM Do YYYY, dddd, HH:mm")}</p>
-            <p>Updated at: {post.updated_at ? moment(post.updated_at).format("MMMM Do YYYY, dddd, HH:mm") : "-"}</p>
-            <p>Status: {post.status}</p>
-            <p>Category: {post.category}</p>
-            <p>Tags: {post.tags.join(", ")}</p>
+                    <Box sx={{ color: 'text.secondary', textAlign: "left" }}>
+                        in {post.category}
+                    </Box>
 
-            <div>
-                <Markdown remarkPlugins={[remarkGfm]}>{post.content}</Markdown>
+                    <Box sx={{ color: 'text.primary', textAlign: "left" }}>
+                        <Markdown remarkPlugins={[remarkGfm]}>{post.content}</Markdown>
+                    </Box>
+                </Paper>
             </div>
-        </div>
+        </Container>
     )
 }
 
