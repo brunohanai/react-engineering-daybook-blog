@@ -6,14 +6,14 @@ export const posts = [
         slug: "engineering-daybook",
         title: "Engineering Daybook",
         content: `
-[191--192][The Pragmatic Programmer]:
+**[191--192][The Pragmatic Programmer]:**
 
-> "... they'd been trained to keep an engineering daybook, a kind of journal in which they recorded what they did, things they'd learned, sketches of ideas,
+> _"... they'd been trained to keep an engineering daybook, a kind of journal in which they recorded what they did, things they'd learned, sketches of ideas,
 readings from meters: basically anything to do with their work. When the notebook became full, they'd write the date range on the spine, then stick it on the shelf
-next to previous daybooks. There may have been a gentle competition going on for whose set of books took the most shelf space."
+next to previous daybooks. There may have been a gentle competition going on for whose set of books took the most shelf space."_
 
-> "So, try keeping an engineering daybook. Use paper, not a file or a wiki: there's something special about the act of writing compared to typing. Give it a month,
-and see if you're getting any benefits."
+> _"So, try keeping an engineering daybook. Use paper, not a file or a wiki: there's something special about the act of writing compared to typing. Give it a month,
+and see if you're getting any benefits."_
         `,
         status: "Published", //TODO: Enum
         category: "Learning", // TODO: Enum?
@@ -24,7 +24,7 @@ and see if you're getting any benefits."
     {
         id: "2608955a-ac69-412e-8d62-d9c8b5e84db8",
         slug: "text-replacement-nao-estava-funcionando-macos",
-        title: "Text Replacement nãoo estava funcionando (MacOS)",
+        title: "Text Replacement não estava funcionando (MacOS)",
         content: `
 Os *"[Text Replacement](https://www.digitaltrends.com/computing/how-to-add-and-use-text-replacements-on-mac/)"* configurados no teclado do *macOS* não funcionam em um aplicativo específico ([The Archive](https://zettelkasten.de/the-archive/)), mas funcionam em outros aplicativos.
 
