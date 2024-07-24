@@ -1,5 +1,6 @@
 import { posts } from "../lib/placeholder-data";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 function Home() {
     return (
@@ -9,7 +10,7 @@ function Home() {
                 {posts.map(post => (
                     <li key={post.id}>
                         {/* TODO: created_at formatado e title como slug */}
-                        <Link to={`/${post.created_at}/${post.category.toLowerCase()}/${post.title.toLowerCase()}/`}>{post.title}</Link>
+                        <Link to={`/${moment.utc(post.created_at).format("YYYYMMDHmm")}/${post.category.toLowerCase()}/${post.slug}/`}>{post.title}</Link>
                     </li>
                 ))}
             </ul>
