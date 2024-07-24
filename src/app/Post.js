@@ -19,8 +19,6 @@ function Post() {
         <div className="Post">
             <h1>{post.title}</h1>
 
-            <strong>{post.headline}</strong>
-
             <p>Publshed at: {moment(post.created_at).format("MMMM Do YYYY, dddd, HH:mm")}</p>
             <p>Updated at: {post.updated_at ? moment(post.updated_at).format("MMMM Do YYYY, dddd, HH:mm") : "-"}</p>
             <p>Status: {post.status}</p>
