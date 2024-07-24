@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import About from "./app/About";
+import Archive from "./app/Archive";
 import Header from "./app/Header";
 import Home from "./app/Home";
 import Post from "./app/Post";
@@ -13,6 +14,7 @@ function App() {
 
       <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/archive" element={<Archive />}></Route>
           <Route path="/:createdAt/:category/:slug/" element={<Post />}></Route>
           <Route path="/about" element={<About />}></Route>
       </Routes>

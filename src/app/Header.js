@@ -4,7 +4,9 @@ function Header() {
     return (
         <header className="Header">
             <nav>
-                <Link to="/" className="nav-item">Textos</Link>
+                <Link to="/" className="nav-item">Página Inicial</Link>
+                |
+                <Link to="/archive" className="nav-item">Textos</Link>
                 |
                 <Link to="/about" className="nav-item">Sobre</Link>
             </nav>
