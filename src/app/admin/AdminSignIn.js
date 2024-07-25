@@ -1,13 +1,14 @@
 import { auth } from "../../lib/firebase/config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AdminSignIn() {
     const [userCredentials, setUserCredentials] = useState({});
+    const navigate = useNavigate()
 
     function handleCredentials(e) {
         setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
-        console.log(userCredentials);
     }
 
     function handleSignIn(e) {
@@ -16,7 +17,7 @@ function AdminSignIn() {
         signInWithEmailAndPassword(auth, userCredentials.email, userCredentials.password)
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user);
+            navigate("/");
         })
         .catch((error) => {
             const errorCode = error.code;
