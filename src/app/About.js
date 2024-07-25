@@ -26,7 +26,7 @@ function About() {
                 </Box>
 
                 <Box sx={{ color: 'text.primary', textAlign: "left", width: "80%" }}>
-                    <Markdown remarkPlugins={[[rehypeExternalLinks, {target: '_blank'}]]}>{content}</Markdown>
+                    <Markdown remarkPlugins={[remarkGfm]}>{content}</Markdown>
                 </Box>
             </Paper>
         </Container>
