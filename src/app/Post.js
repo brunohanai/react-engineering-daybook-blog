@@ -1,4 +1,6 @@
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { fetchPosts } from "../lib/store/postsSlice";
 import Markdown from "react-markdown";
 import moment from "moment";
 import remarkGfm from 'remark-gfm'
@@ -7,10 +9,11 @@ import Container from "@mui/material/Container";
 import Grid from '@mui/material/Unstable_Grid2';
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import { posts } from "../lib/placeholder-data";
 
 function Post() {
     const { createdAt, category, slug } = useParams();
+
+    const posts = useSelector(fetchPosts);
     const post = posts.find(post => {
         const postCreatedAt = moment.utc(post.created_at).format("YYYYMMDHmm");
         return postCreatedAt === createdAt;

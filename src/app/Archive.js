@@ -1,5 +1,6 @@
-import { posts } from "../lib/placeholder-data";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { fetchPosts } from "../lib/store/postsSlice";
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';
 import ListItem from "@mui/material/ListItem";
@@ -14,8 +15,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 
 import { Paper } from "@mui/material";
 
-const postsSorted = posts.sort((a, b) => b.created_at - a.created_at);
-
 function PostLink(post) {
     return (
         <Typography sx={{ textAlign: "left" }} variant="p">
@@ -27,6 +26,9 @@ function PostLink(post) {
 }
 
 function Archive() {
+    const posts = useSelector(fetchPosts);
+    const postsSorted = posts.sort((a, b) => b.created_at - a.created_at);
+
     return (
         <Container className="Archive" sx={{ p: 4 }}>
             <Paper elevation={2} sx={{ py: 3 }}>
