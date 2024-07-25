@@ -21,29 +21,27 @@ function Post() {
     }
 
     return (
-        <Container sx={{ p: 4 }}>
-            <div className="Post">
-                <Paper elevation={2} sx={{ p: 3 }}>
-                    <Box sx={{ width: '100%' }}>
-                        <Grid container rowSpacing={1} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
-                            <Grid xs={8} sx={{ textAlign: "left" }}>
-                                <Typography sx={{ fontWeight: "bold", fontSize: "22px" }}>{post.title}</Typography>
-                            </Grid>
-                            <Grid xs={4} sx={{ textAlign: "right" }}>
-                                <Typography sx={{ fontWeight: "bold" }}>{moment(post.created_at).format("MMMM Do YYYY")}</Typography>
-                            </Grid>
+        <Container sx={{ p: 4 }} className="Post" component="div">
+            <Paper elevation={2} sx={{ p: 3 }}>
+                <Box sx={{ width: '100%' }}>
+                    <Grid container rowSpacing={1} columnSpacing={{ xs: 0, sm: 0, md: 0 }}>
+                        <Grid xs={8} sx={{ textAlign: "left" }}>
+                            <Typography sx={{ fontWeight: "bold", fontSize: "22px" }}>{post.title}</Typography>
                         </Grid>
-                    </Box>
+                        <Grid xs={4} sx={{ textAlign: "right" }}>
+                            <Typography sx={{ fontWeight: "bold" }}>{moment(post.created_at).format("MMMM Do YYYY")}</Typography>
+                        </Grid>
+                    </Grid>
+                </Box>
 
-                    <Box sx={{ color: 'text.secondary', textAlign: "left" }}>
-                        in {post.category}
-                    </Box>
+                <Box sx={{ color: 'text.secondary', textAlign: "left" }}>
+                    in {post.category}
+                </Box>
 
-                    <Box sx={{ color: 'text.primary', textAlign: "left" }}>
-                        <Markdown remarkPlugins={[remarkGfm]}>{post.content}</Markdown>
-                    </Box>
-                </Paper>
-            </div>
+                <Box sx={{ color: 'text.primary', textAlign: "left", width: "80%" }}>
+                    <Markdown remarkPlugins={[remarkGfm]}>{post.content}</Markdown>
+                </Box>
+            </Paper>
         </Container>
     )
 }
