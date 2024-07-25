@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { fetchPosts } from "../lib/store/postsSlice";
 import Markdown from "react-markdown";
@@ -20,7 +20,12 @@ function Post() {
     });
 
     if (!post) {
-        return <p>Texto não encontrado</p>;
+        return (
+            <div>
+                <p>Texto não encontrado</p>
+                <Link to="/">Voltar</Link>
+            </div>
+        )
     }
 
     return (
