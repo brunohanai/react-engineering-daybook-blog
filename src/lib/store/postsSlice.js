@@ -12,13 +12,6 @@ export const postsSlice = createSlice({
         addPost: posts => {
             // TODO: Lógica do add
         },
-        // incrementLikes: (posts, action) => {
-        //     posts.map(post => {
-        //         if (post.id === action.payload) {
-        //             post.likes += 1;
-        //         }
-        //     });
-        // }
     },
     extraReducers(builder) {
         builder
