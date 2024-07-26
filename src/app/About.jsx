@@ -1,9 +1,9 @@
 import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
-import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 const content = `
 Publiquei esse blog com 2 objetivos:

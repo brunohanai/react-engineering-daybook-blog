@@ -5,12 +5,12 @@ import Markdown from "react-markdown";
 import moment from "moment";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from 'remark-gfm'
-import Box from '@mui/material/Box';
 import Container from "@mui/material/Container";
 import Grid from '@mui/material/Unstable_Grid2';
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { useEffect } from "react";
+import Box from '@mui/material/Box';
 
 function Post() {
     const { createdAt, category, slug } = useParams();
