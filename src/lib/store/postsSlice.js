@@ -28,6 +28,13 @@ and see if you're getting any benefits."_
         addPost: posts => {
             // TODO: Lógica do add
         },
+        incrementLikes: (posts, action) => {
+            posts.map(post => {
+                if (post.id === action.payload) {
+                    post.likes += 1;
+                }
+            });
+        }
     }
 });
 

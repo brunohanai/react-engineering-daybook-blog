@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { fetchPosts } from "../lib/store/postsSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchPosts, incrementLikes } from "../lib/store/postsSlice";
 import Markdown from "react-markdown";
 import moment from "moment";
 import remarkGfm from 'remark-gfm'
@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 
 function Post() {
     const { createdAt, category, slug } = useParams();
+    const dispatch = useDispatch()
 
     const posts = useSelector(fetchPosts);
     const post = posts.find(post => {
@@ -49,9 +50,17 @@ function Post() {
                 <Box sx={{ color: 'text.primary', textAlign: "left", width: "80%" }}>
                     <Markdown remarkPlugins={[remarkGfm]}>{post.content}</Markdown>
                 </Box>
+
+                <Box sx={{ color: 'text.primary', textAlign: "right", width: "100%" }}>
+                    <button onClick={() => { handleLike(post.id) }}>Like ({post.likes})</button>
+                </Box>
             </Paper>
         </Container>
     )
+
+    function handleLike(postId) {
+        dispatch(incrementLikes(postId));
+    }
 }
 
 export default Post;
