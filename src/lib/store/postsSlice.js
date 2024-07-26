@@ -1,45 +1,75 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { collection, doc, query, where, getDocs, updateDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 export const postsSlice = createSlice({
     name: "posts",
-    initialState: [
-        {
-            id: "6e0a4854-a52d-4627-9125-5fc6ca93e0b8",
-            slug: "engineering-daybook",
-            title: "Engineering Daybook",
-            content: `
-**[191--192][The Pragmatic Programmer]:**
-> _"... they'd been trained to keep an engineering daybook, a kind of journal in which they recorded what they did, things they'd learned, sketches of ideas,
-readings from meters: basically anything to do with their work. When the notebook became full, they'd write the date range on the spine, then stick it on the shelf
-next to previous daybooks. There may have been a gentle competition going on for whose set of books took the most shelf space."_
-
-> _"So, try keeping an engineering daybook. Use paper, not a file or a wiki: there's something special about the act of writing compared to typing. Give it a month,
-and see if you're getting any benefits."_
-            `,
-            status: "Published", //TODO: Enum
-            category: "Learning", // TODO: Enum?
-            tags: ["practices", "books"], // TODO: Enum?
-            created_at: new Date("2024-07-14T13:22:46.000Z"),
-            updated_at: NaN,
-            likes: 0,
-        },
-    ],
+    initialState: {
+        posts: [],
+        status: "idle",
+    },
     reducers: {
         addPost: posts => {
             // TODO: Lógica do add
         },
-        incrementLikes: (posts, action) => {
-            posts.map(post => {
-                if (post.id === action.payload) {
-                    post.likes += 1;
-                }
-            });
-        }
+        // incrementLikes: (posts, action) => {
+        //     posts.map(post => {
+        //         if (post.id === action.payload) {
+        //             post.likes += 1;
+        //         }
+        //     });
+        // }
+    },
+    extraReducers(builder) {
+        builder
+            // fetchPosts:
+            .addCase(fetchPosts.pending, (state, action) => {
+                state.status = "loading";
+            })
+            .addCase(fetchPosts.fulfilled, (state, action) => {
+                state.status = "succeeded";
+                state.posts = action.payload;
+            })
+            .addCase(fetchPosts.rejected, (state, action) => {
+                state.status = "failed";
+                console.log("Error", action.error.message);
+            })
+            // incrementLikes:
+            .addCase(incrementLikes.fulfilled, (state, action) => {
+                state.posts.map(post => {
+                    if (post.id === action.payload.postId) {
+                        post.likes = action.payload.likesCount;
+                    }
+                });
+            })
+            .addCase(incrementLikes.rejected, (state, action) => {
+                state.status = "failed";
+                console.log("Error", action.error.message);
+            })
     }
 });
 
-export const { addPost, incrementLikes } = postsSlice.actions;
+export const { addPost } = postsSlice.actions;
 
-export const fetchPosts = state => state.posts;
+export const selectPosts = state => state.posts;
 
 export default postsSlice.reducer;
+
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
+    const q = query(collection(db, "posts"), where("published", "==", true));
+    const querySnapshot = await getDocs(q);
+    let posts = [];
+    querySnapshot.forEach((post) => {
+        posts.push({id: post.id, ...post.data()});
+    });
+    return posts;
+});
+
+export const incrementLikes = createAsyncThunk('posts/incrementLikes', async (payload) => {
+    const postRef = doc(db, "posts", payload.postId);
+    const newLikesCount = payload.likesCount + 1;
+    await updateDoc(postRef, {
+        likes: newLikesCount,
+    });
+    return {postId: payload.postId, likesCount: newLikesCount};
+});

@@ -1,24 +1,22 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { fetchPosts } from "../lib/store/postsSlice";
+import { selectPosts } from "../lib/store/postsSlice";
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import ListSubheader from "@mui/material/ListSubheader";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
-
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import ListItemIcon from "@mui/material/ListItemIcon";
-
 import { Paper } from "@mui/material";
 
 function PostLink(post) {
     return (
         <Typography sx={{ textAlign: "left" }} variant="p">
-            <Link to={`/${moment.utc(post.created_at).format("YYYYMMDHmm")}/${post.category.toLowerCase()}/${post.slug}/`}>
+            <Link to={`/${moment.unix(post.created_at.seconds).format("YYYYMMDHmm")}/${post.category.toLowerCase()}/${post.slug}/`}>
                 {post.title}
             </Link>
         </Typography>
@@ -26,7 +24,7 @@ function PostLink(post) {
 }
 
 function Archive() {
-    const posts = useSelector(fetchPosts);
+    const posts = useSelector(selectPosts).posts;
     const postsSorted = posts.sort((a, b) => b.created_at - a.created_at);
 
     return (
@@ -38,10 +36,10 @@ function Archive() {
                             <Typography sx={{ fontWeight: "bold", fontSize: "22px", textAlign: "left", ml: 3 }}>Textos</Typography>
                                 <List>
                                     {postsSorted.map(post => (
-                                        <ListItem>
+                                        <ListItem key={post.id}>
                                             <ListItemIcon>
                                                 <Typography sx={{ color: "#333", fontSize: 16, textAlign: "left", ml: 1 }}>
-                                                    {moment.utc(post.created_at).format("MMMM Do YYYY")}
+                                                    {moment.unix(post.created_at.seconds).format("MMMM Do YYYY")}
                                                 </Typography>
                                             </ListItemIcon>
 

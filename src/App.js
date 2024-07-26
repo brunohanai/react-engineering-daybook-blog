@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./lib/firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
+import { fetchPosts, selectPosts } from "./lib/store/postsSlice";
 import { fetchUsers, setUser } from "./lib/store/usersSlice";
 import logo from './logo.svg';
 import './App.css';
@@ -15,6 +17,7 @@ import AdminPost from "./app/admin/AdminPost"
 function App() {
   const dispatch = useDispatch()
 
+  const user = useSelector(fetchUsers);
   onAuthStateChanged(auth, (user) => {
     if (user) {
         const info = {id: user.uid, email: user.email};
@@ -24,7 +27,13 @@ function App() {
     }
   });
 
-  const user = useSelector(fetchUsers);
+  const postsStatus = useSelector(selectPosts).status;
+  const posts = useSelector(selectPosts).posts;
+  useEffect(() => {
+      if (postsStatus == "idle") {
+          dispatch(fetchPosts());
+      }
+  }, []);
 
   return (
     <div className="App">
