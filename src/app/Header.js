@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link as RouterLink } from "react-router-dom";
 import * as React from 'react';
 import AdbIcon from '@mui/icons-material/Adb';
 import AppBar from '@mui/material/AppBar';
@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
+import { Link } from "@mui/material";
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -50,23 +51,24 @@ function Header() {
                             </Tooltip>
                         </Box>
 
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="a"
-                            href="/"
-                            sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.1rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                            }}
-                        >
-                            ENGINEERING DAYBOOK
-                        </Typography>
+                        <Link component={RouterLink} to="/">
+                            <Typography
+                                variant="h6"
+                                noWrap
+                                component="span"
+                                sx={{
+                                    mr: 2,
+                                    display: { xs: 'none', md: 'flex' },
+                                    fontFamily: 'monospace',
+                                    fontWeight: 700,
+                                    letterSpacing: '.1rem',
+                                    color: 'white',
+                                    textDecoration: 'none',
+                                }}
+                            >
+                                ENGINEERING DAYBOOK
+                            </Typography>
+                        </Link>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
@@ -97,46 +99,52 @@ function Header() {
                                     display: { xs: 'block', md: 'none' },
                                 }}
                             >
-                                <MenuItem key="home" onClick={handleCloseNavMenu} component="a" href="/">
+                                <MenuItem component={RouterLink} to="/" key="home" onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">Página Inicial</Typography>
                                 </MenuItem>
 
-                                <MenuItem key="archive" onClick={handleCloseNavMenu} component="a" href="/archive">
+
+                                <MenuItem component={RouterLink} to="/" key="archive" onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">Textos</Typography>
                                 </MenuItem>
 
-                                <MenuItem key="about" onClick={handleCloseNavMenu} component="a" href="/about">
-                                    <Typography textAlign="center">Sobre</Typography>
+                                <MenuItem component={RouterLink} to="/about" key="about" onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center" component="span">Sobre</Typography>
                                 </MenuItem>
                             </Menu>
                         </Box>
 
-                        <Typography
-                            variant="h5"
-                            noWrap
-                            component="a"
-                            href="/"
-                            sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            color: 'inherit',
-                            textDecoration: 'none',
-                            }}
-                        >
-                            ENGINEERING DAYBOOK
-                        </Typography>
+                        <Link component={RouterLink} to="/">
+                            <Typography
+                                variant="h5"
+                                noWrap
+                                component="span"
+                                sx={{
+                                mr: 2,
+                                display: { xs: 'flex', md: 'none' },
+                                flexGrow: 1,
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                color: 'white',
+                                textDecoration: 'none',
+                                }}
+                            >
+                                ENGINEERING DAYBOOK
+                            </Typography>
+                        </Link>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <Button key="archive" component="a" href="/" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
-                                Textos
-                            </Button>
+                            <Link component={NavLink} to="/" onClick={handleCloseNavMenu}>
+                                <Button key="archive" component="span" sx={{ my: 2, color: 'white', textDecoration: 'none' }}>
+                                    Textos
+                                </Button>
+                            </Link>
 
-                            <Button key="about" component="a" href="/about" onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
-                                Sobre
-                            </Button>
+                            <Link component={NavLink} to="/about" onClick={handleCloseNavMenu}>
+                                <Button key="about" component="span" sx={{ my: 2, color: 'white', textDecoration: 'none' }}>
+                                    Sobre
+                                </Button>
+                            </Link>
                         </Box>
                     </Toolbar>
               </Container>
